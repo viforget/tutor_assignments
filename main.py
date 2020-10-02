@@ -4,6 +4,16 @@ import numpy
 def last_elem(elem):
     return elem[-1]
 
+def find_si(row, t_tutor):
+	i = 0
+	buf = 0
+	for case in row:
+		if case == "Si" and t_tutor[i][1] < t_tutor[buf][1]:
+			buf = i
+		i += 1
+	return (buf)
+			
+
 fname = "tutor.csv"
 file = open(fname, "rb")
 
@@ -62,26 +72,33 @@ buf1 = 0
 buf2 = 0
 for row in tab3:
 	j = 0
-	for case in row:
-		if j < key and case == 'Oui':
-			if  t_tutor[j][1] <  t_tutor[buf1][1]:
-				if t_tutor[j][1] < t_tutor[buf2][1]:
-					buf1 = buf2
-					buf2 = j
-				elif t_tutor[j][1] > t_tutor[buf2][1]:
-					buf1 = j
-		j += 1
-	if buf1 != 0:
-		tab3[i][buf1] = 'OK'
-		t_tutor[buf1][1] += 1
-		print 'b1 ' + str(buf1) 
-	if buf2 != 0:
-		tab3[i][buf2] = 'OK' 
-		t_tutor[buf2][1] += 1 
-		print 'b2 ' + str(buf2) 
-	if i == 7:
-		print 'buf1 ' + str(buf1) 
-		print 'buf2 ' + str(buf2) 
+	if i != 0:
+		for case in row:
+			if j < key and case == 'Oui':
+				if  t_tutor[j][1] <  t_tutor[buf1][1]:
+					if t_tutor[j][1] < t_tutor[buf2][1]:
+						buf1 = buf2
+						buf2 = j
+					elif t_tutor[j][1] > t_tutor[buf2][1]:
+						buf1 = j
+			j += 1
+		if buf1 != 0:
+			tab3[i][buf1] = 'OK'
+			t_tutor[buf1][1] += 1
+		else :
+			buf1 = find_si(row, t_tutor)
+			if buf1 != 0:
+				tab3[i][buf1] = 'OK' 
+				t_tutor[buf1][1] += 1
+		
+		if buf2 != 0:
+			tab3[i][buf2] = 'OK' 
+			t_tutor[buf2][1] += 1
+		else : 
+			buf2 = find_si(row, t_tutor)
+			if buf2 != 0:
+				tab3[i][buf2] = 'OK' 
+				t_tutor[buf2][1] += 1
 	i += 1
 
 print tab3
