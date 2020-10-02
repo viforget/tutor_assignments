@@ -11,9 +11,9 @@ for row in reader:
         tab[i].append(case)
     tab.append([])
     i += 1
+
+
 t_day = [[],[]]
-
-
 i = 0
 for r in tab[0]:
     t_day[0].append(tab[0][i] + ' ' + tab[1][i])
@@ -30,6 +30,14 @@ for line in tab:
                 t_day[1][j] += 1
             j += 1
     i += 1
-print t_day
+
+
+t_tutor = [[],[]]
+i = 0
+for r in tab:
+    t_tutor[0].append(tab[i][0])
+    t_tutor[1].append(0)
+    i += 1
+print t_tutor
 
 file.close()
