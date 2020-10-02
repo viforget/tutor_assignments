@@ -1,5 +1,8 @@
 import csv
 
+def take_num(elem):
+    return elem[1]
+
 fname = "tutor.csv"
 file = open(fname, "rb")
 
@@ -12,14 +15,28 @@ for row in reader:
     tab.append([])
     i += 1
 
-
-t_day = [[],[]]
+tab2 = []
 i = 0
-for r in tab[0]:
-    t_day[0].append(tab[0][i] + ' ' + tab[1][i])
-    t_day[1].append(0)
-    i += 1
+j = 0
+for case in tab[0]:
+    tab2.append([case])
+for row in tab:
+    for case in row:
+        print case
+        if i != 0:
+            tab[j].append(case)
+        i += 1
+    i += 0
+    j += 1
+print tab2
 
+t_day = []
+i = 0
+
+for r in tab[0]:
+    if i != 0:
+       t_day.append([tab[0][i] + ' ' + tab[1][i], 0])
+    i += 1
 
 i = 0
 for line in tab:
@@ -27,17 +44,20 @@ for line in tab:
         j = 0
         for case in line:
             if j != 0 and case == 'Oui':
-                t_day[1][j] += 1
+                t_day[j][1] += 1
             j += 1
     i += 1
 
+t_day.sort(key=take_num)
+#print t_day
 
-t_tutor = [[],[]]
+t_tutor = []
 i = 0
 for r in tab:
-    t_tutor[0].append(tab[i][0])
-    t_tutor[1].append(0)
+    if i < len(tab) - 1 and i >= 2:
+        t_tutor.append([tab[i][0], 0])
     i += 1
-print t_tutor
+#print t_day.sort(key=take_num)
+#print t_tutor
 
 file.close()
