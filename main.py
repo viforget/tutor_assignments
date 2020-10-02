@@ -1,4 +1,5 @@
 import csv
+import numpy
 
 def take_num(elem):
     return elem[1]
@@ -6,29 +7,19 @@ def take_num(elem):
 fname = "tutor.csv"
 file = open(fname, "rb")
 
-tab = [[]]
+tab = []
 i = 0;
 reader = csv.reader(file)
 for row in reader:
+    tab.append([])
     for case in row:
         tab[i].append(case)
-    tab.append([])
     i += 1
 
-tab2 = []
-i = 0
-j = 0
-for case in tab[0]:
-    tab2.append([case])
-for row in tab:
-    for case in row:
-        print case
-        if i != 0:
-            tab[j].append(case)
-        i += 1
-    i += 0
-    j += 1
-print tab2
+tab2 = numpy.transpose(tab)
+print (tab)
+print ("---------------------------")
+print (tab2)
 
 t_day = []
 i = 0
