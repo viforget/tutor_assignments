@@ -1,5 +1,12 @@
 import csv
 import numpy
+import sys
+
+def hour_param(elem):
+    return elem[1]
+
+def date_param(elem):
+    return elem[0]
 
 def last_elem(elem):
     return elem[-1]
@@ -101,7 +108,21 @@ for row in tab3:
 				t_tutor[buf2][1] += 1
 	i += 1
 
-print tab3
-print t_tutor
+tab3.sort(key=hour_param)
+tab3.sort(key=date_param)
 
+i = 0
+for row in tab3:
+	for case in row:
+		if isinstance(case, int):
+			sys.stdout.write(str(case))
+		else:
+			sys.stdout.write("'")
+			sys.stdout.write(str(case))
+			sys.stdout.write("'")
+		if i != len(row) - 1:
+			sys.stdout.write(',')
+		i += 1
+	sys.stdout.write('\n')
+	i = 0 
 file.close()
