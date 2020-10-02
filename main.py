@@ -11,5 +11,25 @@ for row in reader:
         tab[i].append(case)
     tab.append([])
     i += 1
-print tab
+t_day = [[],[]]
+
+
+i = 0
+for r in tab[0]:
+    t_day[0].append(tab[0][i] + ' ' + tab[1][i])
+    t_day[1].append(0)
+    i += 1
+
+
+i = 0
+for line in tab:
+    if i >= 1:
+        j = 0
+        for case in line:
+            if j != 0 and case == 'Oui':
+                t_day[1][j] += 1
+            j += 1
+    i += 1
+print t_day
+
 file.close()
