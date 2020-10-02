@@ -68,7 +68,7 @@ for row in tab3:
 				if t_tutor[j][1] < t_tutor[buf2][1]:
 					buf1 = buf2
 					buf2 = j
-				else:
+				elif t_tutor[j][1] > t_tutor[buf2][1]:
 					buf1 = j
 		j += 1
 	if buf1 != 0:
@@ -79,8 +79,9 @@ for row in tab3:
 		tab3[i][buf2] = 'OK' 
 		t_tutor[buf2][1] += 1 
 		print 'b2 ' + str(buf2) 
-	print 'buf1 ' + str(buf1) 
-	print 'buf2 ' + str(buf2) 
+	if i == 7:
+		print 'buf1 ' + str(buf1) 
+		print 'buf2 ' + str(buf2) 
 	i += 1
 
 print tab3
