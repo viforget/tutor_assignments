@@ -56,7 +56,7 @@ for r in tab:
     i += 1
 tab3.sort(key=last_elem)
 
-t_tutor[0][1] = -1
+t_tutor[0][1] = 99999999
 i = 0
 buf1 = 0
 buf2 = 0
@@ -64,8 +64,8 @@ for row in tab3:
 	j = 0
 	for case in row:
 		if j < key and case == 'Oui':
-			if  t_tutor[j][1] >  t_tutor[buf1][1]:
-				if t_tutor[j][1] > t_tutor[buf2][1]:
+			if  t_tutor[j][1] <  t_tutor[buf1][1]:
+				if t_tutor[j][1] < t_tutor[buf2][1]:
 					buf1 = buf2
 					buf2 = j
 				else:
@@ -74,11 +74,13 @@ for row in tab3:
 	if buf1 != 0:
 		tab3[i][buf1] = 'OK'
 		t_tutor[buf1][1] += 1
-		print buf1 
+		print 'b1 ' + str(buf1) 
 	if buf2 != 0:
 		tab3[i][buf2] = 'OK' 
 		t_tutor[buf2][1] += 1 
-		print buf2 
+		print 'b2 ' + str(buf2) 
+	print 'buf1 ' + str(buf1) 
+	print 'buf2 ' + str(buf2) 
 	i += 1
 
 print tab3
